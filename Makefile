@@ -6,7 +6,7 @@
 #    By: znajda <znajda@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/06 19:53:26 by znajda        #+#    #+#                  #
-#    Updated: 2022/02/06 19:53:27 by znajda        ########   odam.nl          #
+#    Updated: 2022/02/09 13:38:35 by znajda        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ all: build_dir $(NAME)
 
 $(NAME): $(SRC)
 	@ ar rc $@ $^
+	@echo libftaprinft.a built
 
 $(BUILD_DIR)/%.o: %.c 
 	@$(CC) -I ./includes/ -c -g $(CFLAGS) -o $@ $<
@@ -41,13 +42,13 @@ build_dir:
 
 clean:
 	clear
-	@echo Cleaning all Object Files 
+	@echo Cleaning all Object Files and Directory
 	@ rm -f $(BUILD_DIR)/*.o
-
-fclean: clean
-	@Echo Removing Build Directory
 	@if [ -d "./$(BUILD_DIR)" ]; then \
 	rmdir $(BUILD_DIR); fi
+
+fclean: clean
+	@echo Removing libftprintf.a
 	@ rm -f $(NAME)
 
 re: fclean all
